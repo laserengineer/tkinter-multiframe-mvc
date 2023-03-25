@@ -1,3 +1,4 @@
+import tkinter
 from tkinter import Frame, Label, Entry, Button
 
 
@@ -28,3 +29,7 @@ class SignInView(Frame):
         self.signup_btn = Button(self, text="Sign Up")
         self.signup_option_label.grid(row=4, column=1, sticky="w")
         self.signup_btn.grid(row=5, column=1, sticky="w")
+my_root = tkinter.Tk()
+my_frame = SignInView(my_root)
+my_frame.grid(row=0, column = 0, sticky="ew")
+my_root.mainloop()
