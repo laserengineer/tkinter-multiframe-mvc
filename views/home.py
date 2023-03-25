@@ -1,3 +1,4 @@
+import tkinter as tk
 from tkinter import Frame, Label, Button
 
 
@@ -15,3 +16,8 @@ class HomeView(Frame):
 
         self.signout_btn = Button(self, text="Sign Out")
         self.signout_btn.grid(row=2, column=0, padx=10, pady=10)
+                
+root = tk.Tk()
+TestView = HomeView(root)
+
+TestView.mainloop()
