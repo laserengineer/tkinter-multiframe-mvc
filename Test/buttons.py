@@ -4,6 +4,7 @@ from tkinter import ttk
 root = Tk()  # Create root window
 root.title("Button Widget")  # title of the GUI window
 
+
 #
 def volumeUp():
     """output message to terminal to tell that the button is working"""
@@ -21,7 +22,7 @@ def turnOnTV():
     # use a Toplevel widget to display an image in a new window
     window = Toplevel(root)
     window.title("TV")
-    image = PhotoImage(file="giphy.gif")
+    image = PhotoImage(file="Test\giphy.gif")
 
     original_image = Label(window, image=image)
     original_image.image = image
@@ -30,7 +31,7 @@ def turnOnTV():
 
 # use Button and Label widgets to create a simple TV remote
 # select image for on button
-on_button_photo = PhotoImage(file="onButton.png")
+on_button_photo = PhotoImage(file="Test\onbutton.png")
 photo = on_button_photo.subsample(1, 1)
 turn_on = ttk.Button(root, image=photo, command=turnOnTV)
 turn_on.pack()
