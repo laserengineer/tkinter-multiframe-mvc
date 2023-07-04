@@ -4,7 +4,7 @@ from PIL import Image, ImageTk, ImageSequence
 
 root = Tk()
 root.title("Elexant 9300 Launcher")
-root.geometry("1200x611")
+root.geometry("1200x411")
 
 canvas = Canvas(root, width=1200, height=311, bg='white')
 

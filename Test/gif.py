@@ -1,28 +1,35 @@
 from tkinter import *
-import tkinter as tk
-from PIL import Image, ImageTk, ImageSequence
 import time
+from PIL import Image, ImageTk, ImageSequence
 
 root = Tk()
-root.geometry("1200x800")
-canvas = Canvas(root,width=1200, height=400,bg='white')
-canvas.pack()
-img=[]
+root.title("Elexant 9300 Launcher")
+root.geometry("1200x411")
 
-#分解gif并逐帧显示
-def pick(event):
-    global a,flag   
-    while 1:
-        im = Image.open('Test\Raychem.gif')
-        # GIF图片流的迭代器
-        iter = ImageSequence.Iterator(im)
-        #frame就是gif的每一帧，转换一下格式就能显示了
-        for frame in iter:
-            pic=ImageTk.PhotoImage(frame)
-            canvas.create_image((600,300), image=pic)
-            time.sleep(0.1)
-            root.update_idletasks()  #刷新
-            root.update()
+canvas = Canvas(root, width=1200, height=311, bg='white')
+canvas.pack(side='bottom')
 
-canvas.bind("<Enter>",pick)  #这个事件是鼠标进入组件，用什么事件不重要，这里只是演示
+# Function to display GIF frames
+def display_gif():
+    im = Image.open('Test/Raychem.gif')
+    frames = []
+    for frame in ImageSequence.Iterator(im):
+        frames.append(ImageTk.PhotoImage(frame))
+
+    # Function to update the canvas with the next frame
+    def update_frame(frame_index):
+        canvas.delete("all")  # Clear the canvas
+        canvas.create_image((1200, 211), image=frames[frame_index])
+        root.update()
+
+        # Schedule the next frame update after a delay
+        root.after(100, lambda: update_frame((frame_index + 1) % len(frames)))
+
+    # Start the initial frame update
+    update_frame(0)
+
+# Call the display_gif function
+display_gif()
+
+root.protocol("WM_DELETE_WINDOW", root.quit)
 root.mainloop()
