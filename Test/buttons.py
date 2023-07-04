@@ -31,7 +31,7 @@ def turnOnTV():
 
 # use Button and Label widgets to create a simple TV remote
 # select image for on button
-on_button_photo = PhotoImage(file="Test\onbutton.png")
+on_button_photo = PhotoImage(file="Test\BoN.png")
 photo = on_button_photo.subsample(1, 1)
 turn_on = ttk.Button(root, image=photo, command=turnOnTV)
 turn_on.pack()
