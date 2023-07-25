@@ -5,23 +5,40 @@ from PIL import Image, ImageTk, ImageSequence
 from BoN import BoN
 from HA import HA
 
+
 class AppLauncher(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Elexant 9300 Launcher")
         self.geometry("1200x411+50+50")
-        
-        self.canvas = tk.Canvas(self, width=681, height=240, bg='white')
-        self.canvas.pack(side='top', fill='x')
-        
+
+        self.canvas = tk.Canvas(self, width=681, height=240, bg="white")
+        self.canvas.pack(side="top", fill="x")
+
+        # Add drop_down menu
         self.menu = tk.StringVar(self)
         self.menu.set("Select App to Launch")
-
-        self.drop = ttk.Combobox(self, textvariable=self.menu, values=["BoN", "HA"], font=("bold", 20))
+        self.drop = ttk.Combobox(
+            self,
+            textvariable=self.menu,
+            values=["BoN", "HA"],
+            font=("Helvetica", 16, "bold"),
+        )
         self.drop.pack(pady=20)
 
-        self.launch_button = ttk.Button(self, text="Launch App", command=self.launch_app, width = 20)
-        self.launch_button.pack(anchor='n', padx=10)
+        # Add launch button
+        button_style = ttk.Style()
+        button_style.configure(
+            "Launcher_Button.TButton", font=("Helvetica", 16, "bold")
+        )
+        self.launch_button = ttk.Button(
+            self,
+            text="Launch App",
+            command=self.launch_app,
+            width=20,
+            style="Launcher_Button.TButton",
+        )
+        self.launch_button.pack(anchor="n", padx=10)
 
         self.protocol("WM_DELETE_WINDOW", self.quit)
         self.display_gif()
@@ -39,7 +56,7 @@ class AppLauncher(tk.Tk):
 
     def display_gif(self):
         # Open the GIF file
-        im = Image.open('Test/Raychem.gif')
+        im = Image.open("Test/Raychem.gif")
         self.frames = []
 
         # Extract each frame from the GIF and convert it to PhotoImage
@@ -61,6 +78,7 @@ class AppLauncher(tk.Tk):
 
         # Schedule the next frame update after a delay
         self.after(100, lambda: self.update_frame((frame_index + 1) % len(self.frames)))
+
 
 if __name__ == "__main__":
     # Instantiate the AppLauncher class and start the main event loop
