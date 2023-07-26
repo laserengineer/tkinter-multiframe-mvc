@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import font
+from tkinter import messagebox
 from PIL import Image, ImageTk, ImageSequence
 from BoN import BoN
 from HA import HA
@@ -42,17 +43,29 @@ class AppLauncher(tk.Tk):
 
         self.protocol("WM_DELETE_WINDOW", self.quit)
         self.display_gif()
-
+        
+        
     def launch_app(self):
+        
+        # Create an Error message for invalid selection
+        def show_selection_error_dialog():
+            messagebox.showerror("Error", "Invalid Selection!")
+        
         # Get the selected app name from the dropdown menu
-        app_name = self.menu.get()
+        app_name = self.menu.get()        
 
         # Create the corresponding app object based on the selected app name
         if app_name == "BoN":
             app = BoN("Launcher")
+            app.launch()
+            self.quit()
         elif app_name == "HA":
             app = HA("Launcher")
-        app.launch()
+            app.launch()
+            self.quit()
+        else:
+            show_selection_error_dialog()
+        
 
     def display_gif(self):
         # Open the GIF file

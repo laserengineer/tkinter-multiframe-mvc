@@ -1,18 +1,14 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter import messagebox
+
+def show_error_dialog():
+    messagebox.showerror("Error", "An error has occurred!")
 
 root = tk.Tk()
+root.title("Error Dialog Example")
 
-button_style = ttk.Style()
-button_style.configure("Launcher_Button.TButton", font=("Helvetica", 20, "bold"))
-
-launch_button = ttk.Button(
-    root,
-    text="Launch App",
-    command=root.quit,
-    width=20,
-    style="Launcher_Button.TButton",
-)
-launch_button.pack(anchor="n", padx=10)
+error_button = ttk.Button(root, text="Show Error", command=show_error_dialog)
+error_button.pack(pady=20)
 
 root.mainloop()
